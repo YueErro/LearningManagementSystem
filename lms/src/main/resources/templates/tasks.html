@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Listing page</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+    </head>
+    <body>
+        <center><h1>Tasks list</h1></center>
+        <div href="login">
+            <center>
+                <button class="btn btn-outline-secondary btn-sm" type="button" onclick="location.href='/add.html'" value="newtask">
+                    New task
+                </button>
+            </center>
+        </div>
+        <div><p></p></div>
+        <div th:each="task : ${tasks}" class="container">
+            <table class="table" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td><h4 th:text="${task.name}"></h4></td>
+                    </tr>
+                    <tr>
+                        <td class="col-6"><p class="card-text" th:text="${task.description}"></p></td>
+                    </tr>
+                    <tr>
+                        <td>From:</td>
+                        <td th:text="${task.datefrom}"></td>
+                    </tr>
+                    <tr>
+                        <td>To:</td>
+                        <td th:text="${task.dateto}"></td>
+                    </tr>
+                    <tr>
+                        <form action="tasks" th:action="@{/edit}" th:object="${task}" method="get">
+                            <td><input type="hidden" name="id" th:value="${task.id}"/></td>
+                            <td style="text-align: right">
+                                <p><input class="btn btn-outline-secondary btn-sm" type="submit" value="Edit"/></p>
+                            </td>
+                        </form>
+                    </tr>
+                    <tr>
+                        <form action="tasks" th:action="@{/delete}" th:object="${task}" method="post">
+                            <td><input type="hidden" name="id" th:value="${task.id}"/></td>
+                            <td style="text-align: right">
+                                <p><input class="btn btn-outline-danger btn-sm" type="submit" value="Delete"/></p>
+                            </td>                 
+                        </form>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <center>
+                <form th:action="@{/logout}" method="post">
+                    <input class="btn btn-primary btn-sm" type="submit" value="Sign Out"/>
+                </form>
+            </center>
+        </div>
+    </body>
+</html>

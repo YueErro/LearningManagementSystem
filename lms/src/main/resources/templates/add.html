@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New task</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous" />
+    </head>
+    <body>
+        <h1>New task</h1>
+        <form class="form-group" action="tasks" th:action="@{/add}" th:object="${task}" method="post">
+            <table border="0" cellspacing="5" cellpadding="1">
+                <tbody>
+                    <tr>
+                        <td><h6>Task name</h6></td>
+                        <td>
+                            <input class="form-control form-control-sm" type="text" th:field="*{name}" th:errorclass="is-invalid" required="true"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h6>Description</h6></td>
+                        <td>
+                            <textarea th:field="*{description}" class="form-control" rows="3" maxlength="100" th:errorclass="is-invalid" required="true"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h6>Date from</h6></td>
+                        <td>
+                            <input class="form-control form-control-sm" type="date" th:field="*{datefrom}" placeholder="dd/mm/yyyy" th:errorclass="is-invalid" required="true"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h6>Date to</h6></td>
+                        <td>
+                            <input class="form-control form-control-sm" type="date" th:field="*{dateto}" placeholder="dd/mm/yyyy" th:errorclass="is-invalid" required="true"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='/tasks.html'" value="goback">
+                                Go back
+                            </button>
+                        </td>
+                        <td style="text-align: right"><button type="submit" class="btn btn-primary btn-sm">Add</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </body>
+</html>
